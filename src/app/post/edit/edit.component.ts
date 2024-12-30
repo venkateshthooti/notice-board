@@ -13,6 +13,7 @@ export class EditComponent implements OnInit {
       
   id!: number;
   post!: Post;
+
   form!: FormGroup;
     
   /*------------------------------------------
@@ -33,8 +34,13 @@ export class EditComponent implements OnInit {
    */
   ngOnInit(): void {
     this.id = this.route.snapshot.params['postId'];
-    this.postService.find(this.id).subscribe((data: Post)=>{
-      this.post = data;
+    this.postService.find(this.id).subscribe(
+      (data: Post)=>{
+
+        
+      this.form.patchValue(data);
+      
+      // this.post = data;
     }); 
       
     this.form = new FormGroup({
@@ -61,7 +67,7 @@ export class EditComponent implements OnInit {
     console.log(this.form.value);
     this.postService.update(this.id, this.form.value).subscribe((res:any) => {
          console.log('Post updated successfully!');
-         this.router.navigateByUrl('post/index');
+        //  this.router.navigateByUrl('post/index');
     })
   }
    

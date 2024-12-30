@@ -32,6 +32,8 @@ export class CreateComponent implements OnInit {
       title: new FormControl('', [Validators.required]),
       body: new FormControl('', [Validators.required])
     });
+
+    console.log(this.form)
   }
     
   /**
